@@ -20,7 +20,7 @@ public class PlayerGetCoin : MonoBehaviour
         if (collision.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
-            AboutPlayer._Instance.score += 20;
+            AboutPlayer._Instance.score += 40;
         }
     }
 }

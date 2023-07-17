@@ -4,15 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HighCoreTable : MonoBehaviour
 {
-    public Transform entryContainer, entryTemplate;
+    public Transform entryContainer,entryTemplate;
     List<HighscoreEntry> highscoreList;
     List<Transform> highscoreEntryTransformList;
     private void Awake()
     {
         entryTemplate.gameObject.SetActive(false);
 
-
+       
         highscoreEntryTransformList = new List<Transform>();
+        //highscoreList = new List<HighscoreEntry>()
+        //{
+        //    new HighscoreEntry{ score = 1234, name ="AA1"},
+        //    new HighscoreEntry{ score = 2234, name ="AA2"},
+        //    new HighscoreEntry{ score = 3234, name ="AA3"},
+        //    new HighscoreEntry{ score = 5234, name ="AA4"},
+        //    new HighscoreEntry{ score = 4234, name ="AA5"},
+        //    new HighscoreEntry{ score = 6234, name ="AA6"},
+
+        //};
+        
+        //Highscores highscores = new Highscores { highscoreList=highscoreList };
+        //string json = JsonUtility.ToJson(highscores);
+        //PlayerPrefs.SetString("highscoretable", json);
+        //PlayerPrefs.Save();
+        //Debug.Log(PlayerPrefs.GetString("highscoretable"));
     }
     private void Start()
     {
@@ -38,7 +54,7 @@ public class HighCoreTable : MonoBehaviour
             createHighScoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
         }
     }
-    void createHighScoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformslist)
+    void createHighScoreEntryTransform(HighscoreEntry highscoreEntry,Transform container, List<Transform> transformslist )
     {
         float templateHeight = 20f;
         Transform entryTransform = Instantiate(entryTemplate, container);
@@ -49,7 +65,7 @@ public class HighCoreTable : MonoBehaviour
         string rankString;
         switch (rank)
         {
-            default: rankString = rank + ""; break;
+            default: rankString = rank +""; break;
             case 1: rankString = "1ST"; break;
             case 2: rankString = "2"; break;
             case 3: rankString = "3"; break;
@@ -67,7 +83,7 @@ public class HighCoreTable : MonoBehaviour
     }
     public void AddHighscore(int score, string name)
     {
-        HighscoreEntry hi = new HighscoreEntry { score = score, name = name };
+        HighscoreEntry hi = new HighscoreEntry {score=score,name=name };
         string jsonString = PlayerPrefs.GetString("highscoretable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
 
@@ -77,14 +93,14 @@ public class HighCoreTable : MonoBehaviour
         PlayerPrefs.SetString("highscoretable", json);
         PlayerPrefs.Save();
     }
-    public class Highscores
+   public class Highscores
     {
         public List<HighscoreEntry> highscoreList;
     }
     [System.Serializable]
     public class HighscoreEntry
-    {
+        {
         public int score;
         public string name;
-    }
+        }
 }

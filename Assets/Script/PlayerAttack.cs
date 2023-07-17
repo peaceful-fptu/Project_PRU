@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     void NapDan()
     {
@@ -23,54 +23,49 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (AboutPlayer._Instance) 
-            if(AboutPlayer._Instance.intHealth <= 0) return;  // neu mau player < = 0 thi k cho dung skill nua
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.J))
+        if (AboutPlayer._Instance)
+            if (AboutPlayer._Instance.intHealth <= 0) return;
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            // chém
             Attack();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            // chém 1
-            if(unlockAttack1) // neu ky nang nay duoc mo khoa
-            Attack1();
+            if (unlockAttack1)
+                Attack1();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            // chém 1
-            if (unlockAttack2) // neu ky nang nay duoc mo khoa
+            if (unlockAttack2)
                 Attack2();
         }
     }
     void Attack()
     {
-        // play attack animation
         anim.SetTrigger("Attack");
-       Collider2D[] hitEnemies= Physics2D.OverlapCircleAll(attackPoint.position,attackRange,enemyLayers);
-        foreach(Collider2D enemy in hitEnemies)
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit " + enemy.name);
-            if(enemy.CompareTag("Boss")) // neu tan cong vao boss
+            if (enemy.CompareTag("Boss"))
             {
                 enemy.GetComponent<Boss>().health = enemy.GetComponent<Boss>().health - 10;
             }
-            if(enemy.GetComponent<AboutEnemy>())
+            if (enemy.GetComponent<AboutEnemy>())
             {
-                enemy.GetComponent<AboutEnemy>().health-= 5;
+                enemy.GetComponent<AboutEnemy>().health -= 5;
             }
         }
     }
 
     void Attack1()
     {
-        // play attack animation
         anim.SetTrigger("Attack1");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit " + enemy.name);
-            if (enemy.CompareTag("Boss")) // neu tan cong vao boss
+            if (enemy.CompareTag("Boss"))
             {
                 enemy.GetComponent<Boss>().health = enemy.GetComponent<Boss>().health - 20;
             }
@@ -81,27 +76,21 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     public GameObject objDan;
-    public Transform posDan;//vi tri dan xuat hien
+    public Transform posDan;
     int soDan = 0;
     bool isDangNapDan = false;
     void Attack2()
     {
-
-        // tao ra dan
         soDan++;
-        // ban nhieu nhat 1 luc 3 vien dan
-        // play attack animation
         if (soDan > 3)
         {
-            if(!isDangNapDan)
+            if (!isDangNapDan)
             {
                 isDangNapDan = true;
-                Invoke("NapDan", 3.0f);// nap lai dan sau 3s
+                Invoke("NapDan", 3.0f);
             }
             return;
         }
-
-      
         anim.SetTrigger("Attack2");
         Instantiate(objDan, posDan.position, posDan.rotation);
 

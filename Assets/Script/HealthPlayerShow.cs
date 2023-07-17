@@ -19,7 +19,6 @@ public class HealthPlayerShow : MonoBehaviour
         if (AboutPlayer._Instance)
         {
             healthBar.value = AboutPlayer._Instance.intHealth;
-            // chet
             if (AboutPlayer._Instance.intHealth == 0)
             {
                 GetComponent<PlayerMovement>().enabled = false;

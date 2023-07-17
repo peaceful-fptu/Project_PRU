@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GetScore : MonoBehaviour
 {
-    // Lay score hien tai va hien thi len man hinh
     public Text txtScore;
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,6 @@ public class MonserLV1 : MonoBehaviour
 {
 
     public float forceX = 2f;
-
     public bool IsLookRight;
     private Animator anim;
     private Rigidbody2D myBody;
@@ -40,7 +39,6 @@ public class MonserLV1 : MonoBehaviour
         }
         if (GetComponent<AboutEnemy>().health <= 0)
         {
-            //source.AudioPlay("Monster Death");
             Destroy(gameObject);
             if (AboutPlayer._Instance) AboutPlayer._Instance.intEnemyKilled++;
         }
@@ -105,7 +103,7 @@ public class MonserLV1 : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            isHitPlayer = true;  // neu dang cham player
+            isHitPlayer = true;
         }
 
     }

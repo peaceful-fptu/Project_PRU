@@ -84,8 +84,6 @@ public class character : MonoBehaviour {
     private Transform monsterPos3;
 
     //tạo biến đếm số lượng quái vật
-    int dem = 0;
-    int dem2 = 0;
 
 
     //sử dụng thuộc tính của gameMaster (điểm số)

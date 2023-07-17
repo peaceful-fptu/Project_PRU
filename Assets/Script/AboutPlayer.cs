@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Quan ly thong tin nguoi choi, diem so, mau cua nguoi choi
 public class AboutPlayer : MonoBehaviour
 {
     public static AboutPlayer _Instance;
     public int intHealth = 100;
     public string txtTen;
     public int score = 0;
-    public int intEnemyKilled = 0; // so quai giet duoc
+    public int intEnemyKilled = 0;
     // Start is called before the first frame update
     void Awake()
     {

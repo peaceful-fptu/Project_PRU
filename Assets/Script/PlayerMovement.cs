@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-        if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space)) // neu an w hoac nut space thi thuc hien nhay
+        if (Input.GetButtonDown("Jump"))
         {
             jump = true;
             animator.SetBool("IsJumping", true);
@@ -47,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move our character
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }

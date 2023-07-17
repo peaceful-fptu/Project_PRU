@@ -10,7 +10,6 @@ public class StartGame : MonoBehaviour
     public InputField inputTen;
     private void Awake()
     {
-        //PlayerPrefs.DeleteAll();
     }
     // Start is called before the first frame update
     void Start()
@@ -33,8 +32,10 @@ public class StartGame : MonoBehaviour
     }
     public void LoadScene()
     {
-        if (string.IsNullOrEmpty(inputTen.text)) return;
-        AboutPlayer._Instance.txtTen = inputTen.text;
-        SceneManager.LoadScene("game");
+        if (!string.IsNullOrEmpty(inputTen.text))
+        {
+            AboutPlayer._Instance.txtTen = inputTen.text;
+            SceneManager.LoadScene("game");
+        }
     }
 }
